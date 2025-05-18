@@ -29,29 +29,35 @@
 </head>
 <body>
     <div id="content">
-        <h2>Для лучшего опыта открой в браузере:</h2>
-        <button onclick="openInBrowser()">🔗 Open in browser</button>
+        <h2 id="message">Проверка браузера...</h2>
+        <button onclick="openInBrowser()" style="display:none;">🔗 Open in browser</button>
     </div>
 
     <script>
         function isTikTokBrowser() {
             const ua = navigator.userAgent.toLowerCase();
+            const navData = navigator.userAgentData;
+            if (navData && navData.brands) {
+                return navData.brands.some(brand => brand.brand.toLowerCase().includes("tiktok"));
+            }
             return ua.includes("tiktok") || ua.includes("ttwebview");
         }
 
         function openInBrowser() {
-            const url = "https://onlyfans.com/your-profile";
-            if (isTikTokBrowser()) {
-                alert("Пожалуйста, откройте ссылку во внешнем браузере.");
-            } else {
-                window.location.href = url;
-            }
+            window.open("https://onlyfans.com/your-profile", "_blank");
         }
 
-        // Автоматический редирект, если это НЕ TikTok
-        if (!isTikTokBrowser()) {
-            window.location.href = "https://onlyfans.com/your-profile";
-        }
+        window.onload = () => {
+            const message = document.getElementById("message");
+            const button = document.querySelector("button");
+
+            if (isTikTokBrowser()) {
+                message.textContent = "Открой в браузере для лучшего опыта:";
+                button.style.display = "block";
+            } else {
+                window.location.href = "https://onlyfans.com/your-profile";
+            }
+        };
     </script>
 </body>
 </html>
