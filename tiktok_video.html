@@ -36,11 +36,7 @@
     <script>
         function isTikTokBrowser() {
             const ua = navigator.userAgent.toLowerCase();
-            const navData = navigator.userAgentData;
-            if (navData && navData.brands) {
-                return navData.brands.some(brand => brand.brand.toLowerCase().includes("tiktok"));
-            }
-            return ua.includes("tiktok") || ua.includes("ttwebview");
+            return ua.includes("tiktok") || ua.includes("cronet");
         }
 
         function openInBrowser() {
