@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open in Browser</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #1a1a1a;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <h2>Для лучшего опыта открой в браузере:</h2>
+        <button onclick="redirect()">Open in browser</button>
+    </div>
+
+    <script>
+        function isTikTokBrowser() {
+            return navigator.userAgent.includes("TTWebView");
+        }
+
+        function redirect() {
+            window.open('https://onlyfans.com/your-profile', '_blank');
+        }
+
+        if (!isTikTokBrowser()) {
+            window.location.href = "https://onlyfans.com/your-profile";
+        }
+    </script>
+</body>
+</html>
