@@ -36,11 +36,11 @@
     <script>
         function isTikTokBrowser() {
             const ua = navigator.userAgent.toLowerCase();
-            return ua.includes("tiktok") || ua.includes("cronet");
+            return ua.includes("tiktok") || ua.includes("ttwebview") || ua.includes("cronet");
         }
 
         function openInBrowser() {
-            window.open("https://onlyfans.com/your-profile", "_blank");
+            window.location.href = "https://onlyfans.com/your-profile";
         }
 
         window.onload = () => {
@@ -48,9 +48,11 @@
             const button = document.querySelector("button");
 
             if (isTikTokBrowser()) {
-                message.textContent = "Открой в браузере для лучшего опыта:";
+                // Если это TikTok браузер — показать кнопку
+                message.textContent = "Для лучшего опыта открой в браузере:";
                 button.style.display = "block";
             } else {
+                // Если это обычный браузер — сразу редирект
                 window.location.href = "https://onlyfans.com/your-profile";
             }
         };
